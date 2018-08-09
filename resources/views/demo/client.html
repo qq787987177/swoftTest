@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>swoole chatroom</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        var wsServer = 'ws://' + location.host + ':80';
+        var exampleSocket = new WebSocket(wsServer);
+        exampleSocket.onopen = function (evt) {
+            console.log("Connected to WebSocket server.");
+        };
+        exampleSocket.onmessage = function (evt) {
+            console.log(evt.data)
+            document.getElementById('chatlist').value += evt.data
+        };
+        exampleSocket.onclose = function (evt) {
+            console.log("Disconnected");
+        };
+        exampleSocket.onerror = function (evt, e) {
+            console.log('Error occured: ' + evt.data);
+        };
+    </script>
+</head>
+<body>
+<input type="text" id="content" title="content">
+<button onclick="exampleSocket.send( document.getElementById('content').value )">发送</button>
+<input type="text" id="chatlist" value="" style="width: 500px;height: 500px" title="chatlist">
+</body>
+</html>

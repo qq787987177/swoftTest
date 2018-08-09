@@ -13,12 +13,12 @@ return [
             \Swoft\View\Middleware\ViewMiddleware::class,
             // \Swoft\Devtool\Middleware\DevToolMiddleware::class,
             // \Swoft\Session\Middleware\SessionMiddleware::class,
-        ]
+        ],
     ],
     'httpRouter'       => [
-        'ignoreLastSlash'  => false,
-        'tmpCacheNumber' => 1000,
-        'matchAll'       => '',
+        'ignoreLastSlash' => false,
+        'tmpCacheNumber'  => 1000,
+        'matchAll'        => '',
     ],
     'requestParser'    => [
         'parsers' => [
@@ -27,12 +27,13 @@ return [
     ],
     'view'             => [
         'viewsPath' => '@resources/views/',
+        'suffix'    => 'html'
     ],
     'cache'            => [
         'driver' => 'redis',
     ],
-    'demoRedis' => [
-        'class' => \Swoft\Redis\Redis::class,
-        'poolName' => 'demoRedis'
-    ]
+    'demoRedis'        => [
+        'class'    => \Swoft\Redis\Redis::class,
+        'poolName' => 'demoRedis',
+    ],
 ];

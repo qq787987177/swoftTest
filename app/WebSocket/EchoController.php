@@ -1,4 +1,12 @@
 <?php
+/**
+ * This file is part of Swoft.
+ *
+ * @link    https://swoft.org
+ * @document https://doc.swoft.org
+ * @contact group@swoft.org
+ * @license https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\WebSocket;
 
@@ -10,24 +18,42 @@ use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server;
 
 /**
- * Class EchoController
+ * Class EchoController - This is an controller for handle websocket
+ *
  * @package App\WebSocket
- * @WebSocket("/echo")
+ * @WebSocket("")
  */
 class EchoController implements HandlerInterface
 {
     /**
-     * {@inheritdoc}
+     * 在这里你可以验证握手的请求信息
+     * - 必须返回含有两个元素的array
+     *  - 第一个元素的值来决定是否进行握手
+     *  - 第二个元素是response对象
+     * - 可以在response设置一些自定义header,body等信息
+     *
+     * @param Request  $request
+     * @param Response $response
+     *
+     * @return array
+     * [
+     *  self::HANDSHAKE_OK,
+     *  $response
+     * ]
      */
     public function checkHandshake(Request $request, Response $response): array
     {
-        return [0, $response];
+        // some validate logic ...
+
+        return [self::HANDSHAKE_OK, $response];
     }
 
     /**
-     * @param Server $server
+     * @param Server  $server
      * @param Request $request
-     * @param int $fd
+     * @param int     $fd
+     *
+     * @return mixed
      */
     public function onOpen(Server $server, Request $request, int $fd)
     {
@@ -36,19 +62,27 @@ class EchoController implements HandlerInterface
 
     /**
      * @param Server $server
-     * @param Frame $frame
+     * @param Frame  $frame
+     *
+     * @return mixed
      */
     public function onMessage(Server $server, Frame $frame)
     {
-        $server->push($frame->fd, 'hello, I have received your message: ' . $frame->data);
+        foreach ($server->connections as $connection) {
+            $server->push($connection, $frame->data);
+        }
     }
 
     /**
      * @param Server $server
-     * @param int $fd
+     * @param int    $fd
+     *
+     * @return mixed
      */
     public function onClose(Server $server, int $fd)
     {
-        // do something. eg. record log, unbind user ...
+        // do something. eg. record log
     }
+
+
 }
