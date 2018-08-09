@@ -10,7 +10,7 @@
         };
         exampleSocket.onmessage = function (evt) {
             console.log(evt.data)
-            document.getElementById('chatlist').value += evt.data
+            document.getElementById('aaaa').innerHTML += "<li>" + evt.data + "</li>"
         };
         exampleSocket.onclose = function (evt) {
             console.log("Disconnected");
@@ -23,6 +23,7 @@
 <body>
 <input type="text" id="content" title="content">
 <button onclick="exampleSocket.send( document.getElementById('content').value )">发送</button>
-<input type="text" id="chatlist" value="" style="width: 500px;height: 500px" title="chatlist">
+<ul id="aaaa">
+</ul>
 </body>
 </html>
