@@ -9,7 +9,7 @@
 return [
     'noticeHandler'      => [
         'class'     => \Swoft\Log\FileHandler::class,
-        'logFile'   => '@runtime/logs/notice.log',
+        'logFile'   => '@runtime/logs/swoole.log',
         'formatter' => '${lineFormatter}',
         'levels'    => [
             \Swoft\Log\Logger::NOTICE,
@@ -20,7 +20,7 @@ return [
     ],
     'applicationHandler' => [
         'class'     => \Swoft\Log\FileHandler::class,
-        'logFile'   => '@runtime/logs/error.log',
+        'logFile'   => '@runtime/logs/swoole.log',
         'formatter' => '${lineFormatter}',
         'levels'    => [
             \Swoft\Log\Logger::ERROR,
