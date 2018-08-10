@@ -45,6 +45,6 @@ class ClientController
      * @return void
      */
     public function send(Request $request){
-        \Swoft::$server->sendToAll($request->query('aaa'));
+        \Swoft::$server->sendToAll($request->query('aaa',123));
     }
 }
