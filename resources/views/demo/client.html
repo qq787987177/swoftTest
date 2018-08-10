@@ -3,7 +3,7 @@
     <title>swoole chatroom</title>
     <meta charset="UTF-8">
     <script type="text/javascript">
-        var wsServer = 'ws://' + location.host + ':80';
+        var wsServer = 'ws://' + location.host;
         var exampleSocket = new WebSocket(wsServer);
         exampleSocket.onopen = function (evt) {
             console.log("Connected to WebSocket server.");
