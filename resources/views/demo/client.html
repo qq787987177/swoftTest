@@ -18,11 +18,19 @@
         exampleSocket.onerror = function (evt, e) {
             console.log('Error occured: ' + evt.data);
         };
+
+        function send(value) {
+            if (!value.replace(/(^\s*)|(\s*$)/g, "")) {
+                alert('empty');
+                return;
+            }
+            exampleSocket.send(value);
+        }
     </script>
 </head>
 <body>
 <input type="text" id="content" title="content">
-<button onclick="exampleSocket.send( document.getElementById('content').value )">发送</button>
+<button onclick="send( document.getElementById('content').value )">发送</button>
 <ul id="aaaa">
 </ul>
 </body>

@@ -68,8 +68,10 @@ class EchoController implements HandlerInterface
      */
     public function onMessage(Server $server, Frame $frame)
     {
-        foreach ($server->connections as $connection) {
-            $server->push($connection, $frame->data);
+        if($frame->data){
+            foreach ($server->connections as $connection) {
+                $server->push($connection, $frame->data);
+            }
         }
     }
 
