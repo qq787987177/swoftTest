@@ -29,6 +29,11 @@
             }
             exampleSocket.send(localStorage.getItem('chat_room_name') + ":" + value);
         }
+
+        function logout() {
+            localStorage.removeItem('chat_room_name');
+            window.location.href = "http://" + location.host + "/ws/login";
+        }
     </script>
 </head>
 <body>
@@ -36,5 +41,6 @@
 <button onclick="send( document.getElementById('content').value )">发送</button>
 <ul id="aaaa">
 </ul>
+<button onclick="logout()">发送</button>
 </body>
 </html>
