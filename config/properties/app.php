@@ -27,6 +27,12 @@ return [
     'service'      => require __DIR__ . DS . 'service.php',
     'breaker'      => require __DIR__ . DS . 'breaker.php',
     'provider'     => require __DIR__ . DS . 'provider.php',
+    'beanScan'     => [
+        'App\Controllers',
+        'App\Models',
+        'App\Middlewares',
+        'App\Exception',
+    ],
     'devtool' => [
         // 是否开启 DevTool，默认值为 false
         'enable' => true,
