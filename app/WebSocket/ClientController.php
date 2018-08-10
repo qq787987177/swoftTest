@@ -23,13 +23,26 @@ class ClientController
 {
     /**
      * index
-     * @RequestMapping(route="client")
+     * @RequestMapping(route="index")
      * @View(template="demo/client")
      *
      * @author yangyi
      * @return array
      */
     public function index()
+    {
+        return [];
+    }
+
+    /**
+     * login
+     * @RequestMapping(route="login")
+     * @View(template="demo/login")
+     *
+     * @author yangyi
+     * @return array
+     */
+    public function login()
     {
         return [];
     }

@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>swoole chatroom</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        if (localStorage.getItem('chat_room_name')) {
+            window.location.href = "http://" + location.host + "/ws/index";
+        }
+
+        function send(value) {
+            localStorage.setItem('chat_room_name', value);
+            window.location.href = "http://" + location.host + "/ws/index";
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="content" title="content" placeholder="name">
+<button onclick="send( document.getElementById('content').value )">go</button>
+</body>
+</html>

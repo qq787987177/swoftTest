@@ -3,6 +3,9 @@
     <title>swoole chatroom</title>
     <meta charset="UTF-8">
     <script type="text/javascript">
+        if (!localStorage.getItem('chat_room_name')) {
+            window.location.href = "http://" + location.host + "/ws/login";
+        }
         var wsServer = 'ws://' + location.host;
         var exampleSocket = new WebSocket(wsServer);
         exampleSocket.onopen = function (evt) {
@@ -24,7 +27,7 @@
                 alert('empty');
                 return;
             }
-            exampleSocket.send(value);
+            exampleSocket.send(localStorage.getItem('chat_room_name') + ":" + value);
         }
     </script>
 </head>

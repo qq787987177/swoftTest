@@ -57,7 +57,7 @@ class EchoController implements HandlerInterface
      */
     public function onOpen(Server $server, Request $request, int $fd)
     {
-        $server->push($fd, 'hello, welcome! :)');
+        //$server->push($fd, $fd . ':hello, welcome! :)');
     }
 
     /**
@@ -68,7 +68,7 @@ class EchoController implements HandlerInterface
      */
     public function onMessage(Server $server, Frame $frame)
     {
-        if($frame->data){
+        if ($frame->data) {
             foreach ($server->connections as $connection) {
                 $server->push($connection, $frame->data);
             }
@@ -85,6 +85,5 @@ class EchoController implements HandlerInterface
     {
         // do something. eg. record log
     }
-
 
 }
