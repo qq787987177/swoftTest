@@ -78,8 +78,8 @@ class EchoController implements HandlerInterface
      */
     public function onMessage(Server $server, Frame $frame)
     {
+        //\Swoft::$server->sendToAll(json_encode($server->connection_info($frame->fd)));
         \Swoft::$server->sendToAll($frame->data);
-
         /*if ($frame->data) {
             foreach ($server->connections as $connection) {
                 $server->push($connection, $frame->data);
