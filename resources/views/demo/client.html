@@ -1,18 +1,19 @@
 <html>
 <head>
+    <link rel="icon" href="data:image/ico;base64,aWNv">
     <title>swoole chatroom</title>
     <meta charset="UTF-8">
     <script type="text/javascript">
         if (!localStorage.getItem('chat_room_name')) {
             window.location.href = "http://" + location.host + "/ws/login";
         }
-        var wsServer = 'ws://' + location.host;
+        var wsServer = 'ws://' + location.host+'?token=12456';
         var exampleSocket = new WebSocket(wsServer);
         exampleSocket.onopen = function (evt) {
             console.log("Connected to WebSocket server.");
         };
         exampleSocket.onmessage = function (evt) {
-            console.log(evt.data)
+            console.log(evt.data);
             document.getElementById('aaaa').innerHTML += "<li>" + evt.data + "</li>"
         };
         exampleSocket.onclose = function (evt) {

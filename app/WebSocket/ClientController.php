@@ -8,10 +8,12 @@
 
 namespace App\WebSocket;
 
+use Swoft\Bean\Annotation\Inject;
 use Swoft\Http\Message\Server\Request;
 use Swoft\Http\Server\Bean\Annotation\Controller;
 use Swoft\Http\Server\Bean\Annotation\RequestMapping;
 use Swoft\View\Bean\Annotation\View;
+use Swoft\Redis\Redis;
 
 /**
  * Class ClientController
@@ -21,6 +23,11 @@ use Swoft\View\Bean\Annotation\View;
  */
 class ClientController
 {
+    /**
+     * @Inject()
+     * @var Redis
+     */
+    public $redis;
     /**
      * index
      * @RequestMapping(route="index")
@@ -59,5 +66,6 @@ class ClientController
      */
     public function send(Request $request){
         \Swoft::$server->sendToAll($request->query('aaa',123));
+        //\Swoft::$server->sendToAll($this->redis->get(123));
     }
 }

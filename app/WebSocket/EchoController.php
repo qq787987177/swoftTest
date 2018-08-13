@@ -10,8 +10,10 @@
 
 namespace App\WebSocket;
 
+use Swoft\Bean\Annotation\Inject;
 use Swoft\Http\Message\Server\Request;
 use Swoft\Http\Message\Server\Response;
+use Swoft\Redis\Redis;
 use Swoft\WebSocket\Server\Bean\Annotation\WebSocket;
 use Swoft\WebSocket\Server\HandlerInterface;
 use Swoole\WebSocket\Frame;
@@ -25,6 +27,12 @@ use Swoole\WebSocket\Server;
  */
 class EchoController implements HandlerInterface
 {
+    /**
+     * @Inject()
+     * @var Redis
+     */
+    public $redis;
+
     /**
      * 在这里你可以验证握手的请求信息
      * - 必须返回含有两个元素的array
@@ -57,7 +65,9 @@ class EchoController implements HandlerInterface
      */
     public function onOpen(Server $server, Request $request, int $fd)
     {
-        //$server->push($fd, $fd . ':hello, welcome! :)');
+        //$this->redis->set($fd, $request->query('token'));
+        //$server->push($fd, $this->redis->get($fd));
+        //$server->close($fd);
     }
 
     /**
@@ -68,11 +78,13 @@ class EchoController implements HandlerInterface
      */
     public function onMessage(Server $server, Frame $frame)
     {
-        if ($frame->data) {
+        \Swoft::$server->sendToAll($frame->data);
+
+        /*if ($frame->data) {
             foreach ($server->connections as $connection) {
                 $server->push($connection, $frame->data);
             }
-        }
+        }*/
     }
 
     /**

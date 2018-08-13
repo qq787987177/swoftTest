@@ -37,4 +37,9 @@ return [
             '${applicationHandler}',
         ],
     ],
+    'lineFormatter'    => [
+        'class'      => \Monolog\Formatter\LineFormatter::class,
+        'format'     => '%datetime% [%level_name%] [%channel%] [logid:%logid%] [spanid:%spanid%] %messages% %context%',
+        'dateFormat' => 'Y-m-d H:i:s',
+    ],
 ];
