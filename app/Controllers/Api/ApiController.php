@@ -65,7 +65,7 @@ class ApiController
 
     public function redisSet()
     {
-        cache()->set('aaa', 'bbb');
+        cache()->set('aaa', 'bbb', 5);
 
         return '';
     }
