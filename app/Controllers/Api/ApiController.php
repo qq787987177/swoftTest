@@ -62,4 +62,16 @@ class ApiController
             ->get(['user_name'])
             ->getResult();
     }
+
+    public function redisSet()
+    {
+        cache()->set('aaa', 'bbb');
+
+        return '';
+    }
+
+    public function redisGet()
+    {
+        return cache('aaa');
+    }
 }
