@@ -2,7 +2,7 @@
 /**
  * This file is part of Swoft.
  *
- * @link https://swoft.org
+ * @link    https://swoft.org
  * @document https://doc.swoft.org
  * @contact group@swoft.org
  * @license https://github.com/swoft-cloud/swoft/blob/master/LICENSE
@@ -22,9 +22,11 @@ use Swoft\View\Bean\Annotation\View;
 /**
  * Class ClientController
  * @Controller(prefix="/ws")
+ *
  * @package App\Controllers
  */
-class ClientController{
+class ClientController
+{
     /**
      * @RequestMapping(route="index", method=RequestMethod::GET)
      * @View(template="demo/client")
@@ -58,7 +60,9 @@ class ClientController{
      *
      * @return void
      */
-    public function send(Request $request){
-        \Swoft::$server->sendToAll($request->query('aaa',123));
+    public function send(Request $request)
+    {
+        \Swoft::$server->sendToAll($request->query('aaa', 123));
     }
+
 }

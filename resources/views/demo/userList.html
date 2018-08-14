@@ -1,0 +1,35 @@
+<html>
+<head>
+    <link rel="icon" href="data:image/ico;base64,aWNv">
+    <title>swoole chatroom</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            url: "http://" + location.host + "/api/user-list?page=1", success: function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    $("#aaaa").prepend('<li>' + result[i]['userName'] + '</li>');
+                }
+            }
+        });
+
+        function add(value) {
+            if (!value.replace(/(^\s*)|(\s*$)/g, "")) {
+                alert('empty');
+                return;
+            }
+            $.ajax({
+                url: "http://" + location.host + "/api/new-user?name=" + value, success: function (result) {
+                    $("#aaaa").prepend('<li>' + result['name'] + '</li>');
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="content" title="content" placeholder="name">
+<button onclick="add( document.getElementById('content').value )">go</button>
+<ul id="aaaa">
+</ul>
+</body>
+</html>

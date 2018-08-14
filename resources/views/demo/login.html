@@ -1,5 +1,6 @@
 <html>
 <head>
+    <link rel="icon" href="data:image/ico;base64,aWNv">
     <title>swoole chatroom</title>
     <meta charset="UTF-8">
     <script type="text/javascript">
@@ -8,6 +9,10 @@
         }
 
         function send(value) {
+            if (!value.replace(/(^\s*)|(\s*$)/g, "")) {
+                alert('empty');
+                return;
+            }
             localStorage.setItem('chat_room_name', value);
             window.location.href = "http://" + location.host + "/ws/index";
         }
