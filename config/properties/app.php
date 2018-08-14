@@ -32,6 +32,7 @@ return [
         'App\Models',
         'App\Middlewares',
         'App\Exception',
+        'App\WebSocket',
     ],
     'devtool' => [
         // 是否开启 DevTool，默认值为 false
