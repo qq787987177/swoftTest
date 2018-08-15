@@ -7,8 +7,10 @@
     <script type="text/javascript">
         $.ajax({
             url: "http://" + location.host + "/api/user-list?page=1", success: function (result) {
-                for (var i = 0; i < result.length; i++) {
-                    $("#aaaa").prepend('<li>' + result[i]['userName'] + '</li>');
+                console.log(result);
+                var data = result['data'];
+                for (var i = 0; i < data.length; i++) {
+                    $("#aaaa").prepend('<li>' + data[i]['userName'] + '</li>');
                 }
             }
         });
@@ -18,10 +20,8 @@
                 alert('empty');
                 return;
             }
-            $.ajax({
-                url: "http://" + location.host + "/api/new-user?name=" + value, success: function (result) {
-                    $("#aaaa").prepend('<li>' + result['name'] + '</li>');
-                }
+            $.post("http://" + location.host + "/api/new-user", {name: value}, function (result) {
+                $("#aaaa").prepend('<li>' + result['name'] + '</li>');
             });
         }
     </script>
