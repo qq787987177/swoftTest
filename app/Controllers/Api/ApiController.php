@@ -71,7 +71,7 @@ class ApiController
     {
         return [
             'data'  => AppUser::query()
-                ->orderBy('id', QueryBuilder::ORDER_BY_ASC)
+                ->orderBy('id', QueryBuilder::ORDER_BY_DESC)
                 ->limit(5, ($request->query('page') - 1) * 5)
                 ->get(['user_name'])
                 ->getResult(),
@@ -92,7 +92,7 @@ class ApiController
     public function userList2(int $page)
     {
         return AppUser::query()
-            ->orderBy('id', QueryBuilder::ORDER_BY_ASC)
+            ->orderBy('id', QueryBuilder::ORDER_BY_DESC)
             ->limit(5, ($page - 1) * 5)
             ->get(['user_name'])
             ->getResult();
